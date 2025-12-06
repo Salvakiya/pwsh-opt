@@ -44,7 +44,7 @@ foreach ($line in $lines) {
         continue
     }
 
-    $scriptName = Join-Path -Path $ScriptDirectory -ChildPath $parts[0].Trim()
+    $scriptName = Join-Path -Path $ScriptDirectory -ChildPath ("opt-toggle-"+$parts[0]).Trim()
     $pathToToggle = $parts[1].Trim()
 
     # Escape single quotes in the path (replace ' with '')
