@@ -89,7 +89,7 @@ Use `opt-add.ps1` to append a new entry easily:
 
 ### 2. Run the generator manually
 
-If you edit `paths.txt` directly:
+If you edit `opt-storage/paths.txt` directly:
 
 ```powershell
 .\opt-generate.ps1
@@ -97,7 +97,7 @@ If you edit `paths.txt` directly:
 
 The script:
 
-* Reads `paths.txt`
+* Reads `opt-storage/paths.txt`
 * Generates one `.ps1` toggle script per entry
 * Writes them in the same directory as `opt-generate.ps1`
 
