@@ -6,6 +6,18 @@ This makes it easy to quickly switch between different toolchains, SDKs, compile
 
 ---
 
+## 📚 Why This Exists
+
+This utility is ideal for developers who frequently switch environments:
+
+* Multiple compilers (MSVC ↔ MinGW ↔ Clang)
+* Multiple Node, Python, or Java versions
+* Multiple SDK or tool directories
+* Temporary debugging environments
+
+It ensures you can swap paths quickly and cleanly **without editing Windows environment variables or restarting**.
+
+---
 ## ✨ Features
 
 * Reads a list of *script name + filesystem path* entries from `paths.txt`.
@@ -145,15 +157,4 @@ Before embedding into the generated script:
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
----
 
-## 📚 Why This Exists
-
-This utility is ideal for developers who frequently switch environments:
-
-* Multiple compilers (MSVC ↔ MinGW ↔ Clang)
-* Multiple Node, Python, or Java versions
-* Multiple SDK or tool directories
-* Temporary debugging environments
-
-It ensures you can swap paths quickly and cleanly **without editing Windows environment variables or restarting**.
