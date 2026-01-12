@@ -15,7 +15,15 @@ try {
         $ScriptDirectory = Split-Path -Parent $ScriptPath
     }
 
-    $PathsFile = Join-Path -Path $ScriptDirectory -ChildPath "paths.txt"
+    # Create opt-storage only if it doesn't exist
+    $optDir = Join-Path $ScriptDirectory "opt-storage"
+
+    if (-not (Test-Path $optDir)) {
+        New-Item -ItemType Directory -Path $optDir | Out-Null
+    }
+
+
+    $PathsFile = Join-Path -Path $ScriptDirectory -ChildPath "opt-storage/paths.txt"
 
     # Normalize script name
     $ScriptName = $ScriptName.Trim()

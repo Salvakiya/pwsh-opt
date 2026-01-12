@@ -3,7 +3,7 @@ $ScriptPath = $MyInvocation.MyCommand.Path
 $ScriptDirectory = Split-Path -Parent $ScriptPath
 
 # Define the filename to append
-$FileName = "paths.txt"
+$FileName = "opt-storage/paths.txt"
 
 
 $inputFile = Join-Path -Path $ScriptDirectory -ChildPath $FileName
