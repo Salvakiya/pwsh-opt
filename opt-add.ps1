@@ -6,6 +6,10 @@ param(
     [string]$Path
 )
 
+Write-Host "opt-add: " -ForegroundColor Green -NoNewline
+Write-Host "Adding tool: " -NoNewline
+Write-Host "$ScriptName" -ForegroundColor Cyan
+
 try {
     # Determine script directory
     $ScriptPath = $MyInvocation.MyCommand.Path
@@ -21,7 +25,6 @@ try {
     if (-not (Test-Path $optDir)) {
         New-Item -ItemType Directory -Path $optDir | Out-Null
     }
-
 
     $PathsFile = Join-Path -Path $ScriptDirectory -ChildPath "opt-storage/paths.txt"
 
@@ -54,8 +57,9 @@ try {
     $exists = $lines | Where-Object { ($_ -split ',',2)[0].Trim() -ieq $ScriptName }
 
     if ($exists) {
-        Write-Host "Entry for '$ScriptName' already exists." -ForegroundColor Yellow
-        exit 0
+        Write-Host "Failed: Entry for '$ScriptName' already exists." -ForegroundColor Red
+        Write-Host "Use opt-remove.ps1 to remove it first." -ForegroundColor Yellow
+        exit 1
     }
 
     # Append new entry in-memory
@@ -68,7 +72,14 @@ try {
     $lines | Set-Content -Path $PathsFile -Encoding utf8
 
     Write-Host "Added entry:" -ForegroundColor Green
-    Write-Host "  $newEntry" -ForegroundColor Green
+    if ($ScriptName -and $Path) {
+        Write-Host "  " -NoNewline
+        Write-Host "$ScriptName" -ForegroundColor Cyan -NoNewline
+        Write-Host " : " -NoNewline
+        Write-Host "$Path" -ForegroundColor Yellow
+    } else {
+        Write-Host "  $newEntry" -ForegroundColor Green
+    }
     
     $GenerateScript = Join-Path -Path $ScriptDirectory -ChildPath "opt-generate.ps1"
     if (Test-Path $GenerateScript) {
