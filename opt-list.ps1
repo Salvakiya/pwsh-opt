@@ -1,5 +1,18 @@
-# Get the directory where this script is located
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+Write-Host "======================" -ForegroundColor Green
+Write-Host "       opt-list       " -ForegroundColor Green
+Write-Host "======================" -ForegroundColor Green
 
-# Find all files starting with "opt-toggle"
-Get-ChildItem -Path $scriptDir -Filter "opt-toggle*" | Select-Object -ExpandProperty Name
+$storagePath = Join-Path $PSScriptRoot 'opt-storage/paths.txt'
+if (Test-Path $storagePath) {
+    Get-Content $storagePath | ForEach-Object {
+        if ($_ -match '^\s*([^,]+)\s*,\s*(.+)$') {
+            $name = $matches[1].Trim()
+            $path = $matches[2].Trim()
+            Write-Host "$name" -ForegroundColor Cyan -NoNewline
+            Write-Host " : " -NoNewline
+            Write-Host "$path" -ForegroundColor Yellow
+        }
+    }
+} else {
+    Write-Host "No tools found."
+}
