@@ -3,3 +3,5 @@
 !opt-add.ps1
 !opt-generate.ps1
 !opt-list.ps1
+!opt-help.ps1
+!opt-remove.ps1
