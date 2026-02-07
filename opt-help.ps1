@@ -17,6 +17,7 @@ function Write-HelpRow($cmd, $argsu, $desc) {
 
 Write-HelpRow "opt-add"    "<tool> <path>" "Add a tool and its path"
 Write-HelpRow "opt-list"   ""              "List all tools and their paths"
+Write-HelpRow "opt-list-active" ""       "List active tools in the PATH environment variable"
 Write-HelpRow "opt-remove" "<tool>"        "Remove a tool and its toggle script"
 Write-HelpRow "opt-show"   "<tool>"        "Show the path of a specific tool"
 
